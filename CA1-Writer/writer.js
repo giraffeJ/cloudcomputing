@@ -10,13 +10,14 @@ const FILE_PATH =  '/data/.last';
 
 const app = express();
 app.get('/', (req, res) => {
-    res.send("Hello world!")
-}).get('/:string', (req, res) => {
-    const msg = `${Date.now()},${req.params.string}`;
+    res.send("Hello world!\n")
+}).get('/:whatever', (req, res) => {
+    const msg = `${Date.now()},${req.params.whatever}`;
     console.log(msg)
     fs.writeFile(FILE_PATH, msg, 'utf8', function(error, data){
         if(error) {throw error};
-        console.log('Write Complete');
+        console.log('Write Complete\n');
+        res.send('Data Changed to' + msg);
     });
 });
 
