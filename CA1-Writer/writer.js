@@ -10,6 +10,10 @@ const CACHE_PATH =  process.argv[2] || '/data';
 const FILE_PATH =  CACHE_PATH + '/.last';
 
 const app = express();
+function touchSync(path){
+    if (fs.existsSync(path)) return;
+    fs.closeSync(fs.openSync(path, 'w'));
+}
 app.get('/', (req, res) => {
     res.send("Hello world!\n")
 }).get('/:whatever', (req, res) => {
@@ -20,11 +24,11 @@ app.get('/', (req, res) => {
     }catch(e){
         if(e.code!='EEXIST') throw e;
     }
+    touchSync(FILE_PATH);
     fs.writeFile(FILE_PATH, msg, 'utf8', function(error, data){
         if(error) {throw error};
         console.log('Write Complete\n');
         res.send('Data Changed to' + msg);
     });
 });
-
 app.listen(PORT, HOST);
