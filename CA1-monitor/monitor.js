@@ -22,9 +22,13 @@ fs.appendFile(LOG_PATH, 'empty', function (err) {
             fs.readFile(FILE_PATH, 'utf8', function (error, data) {
                 if (error) { throw error };
                 data = data + '\n';
-                fs.appendFile(LOG_PATH, data, function (err) {
-                    if (err) throw err;
-                    console.log('Successfully updated');
+                fs.readFile(LOG_PATH, 'utf8', function(err, data2){
+                    if(err) throw err;
+                    data2 = data2 + '\n' + data;
+                    fs.writeFile(LOG_PATH, data2, 'utf8', function(err, data){
+                        if(err) throw err;
+                        console.log('Successfully updated');
+                    })
                 });
             });
     });
