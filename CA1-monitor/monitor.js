@@ -1,27 +1,21 @@
-
 const fs = require('fs');
-const path = require('path');
 const express = require('express');
-const promisify = require('util').promisify;
-const lockfile = require('proper-lockfile');
+const watch = require('node-watch');
 
 const PORT = 8080;
 const HOST = '0.0.0.0';
 const CACHE_PATH =  process.argv[2] || '/data';
-const LAST_CACHE_FILENAME = '.last';
+const FILE_PATH =  CACHE_PATH + '/.last';
+const LOG_PATH =  CACHE_PATH + '/.log';
 
-function touchSync(path){
-    if (fs.existsSync(path)) return;
-    fs.closeSync(fs.openSync(path, 'w'));
-}
+watch(FILE_PATH, {recursive: true}, function(evt, name){
 
-((logPath)=>{
-    if(fs.existsSync(logPath)) return;
-    fs.mkdirSync(logPath);
-})(CACHE_PATH)
-
-function watchDataChange(){
-    fs.open()
-}
-
-watchDataChange();
+    fs.readFile(FILE_PATH, 'utf8', function(error, data){
+        if(error) {throw error};
+        data = '\n' + data;
+        fs.appendFile(LOG_PATH, data, function(err){
+            if(err) throw err;
+            console.log('Successfully updated');
+        });
+    });
+});
