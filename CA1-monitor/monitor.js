@@ -17,9 +17,8 @@ fs.appendFile(LOG_PATH, 'empty', function (err) {
         if (e.code != 'EEXIST') throw e;
     }
     touchSync(FILE_PATH);
-    fs.watch(FILE_PATH, { recursive: true }, function (evt, name) {
-        check = 1 - check;
-        if (check == 1) {
+    touchSync(LOG_PATH);
+    watch(FILE_PATH, { recursive: true }, function (evt, name) {
             fs.readFile(FILE_PATH, 'utf8', function (error, data) {
                 if (error) { throw error };
                 data = data + '\n';
@@ -28,6 +27,5 @@ fs.appendFile(LOG_PATH, 'empty', function (err) {
                     console.log('Successfully updated');
                 });
             });
-        }
     });
 });
