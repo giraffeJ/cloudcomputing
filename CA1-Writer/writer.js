@@ -11,7 +11,7 @@ const FILE_PATH =  CACHE_PATH + '/.last';
 
 const app = express();
 app.get('/', (req, res) => {
-    res.send("Hello world!\n" + FILE_PATH)
+    res.send("Hello world!\n")
 }).get('/:whatever', (req, res) => {
     const msg = `${Date.now()},${req.params.whatever}`;
     console.log(msg)

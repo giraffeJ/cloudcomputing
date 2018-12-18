@@ -1,9 +1,6 @@
 const fs = require('fs');
-const express = require('express');
 const watch = require('node-watch');
 
-const PORT = 8080;
-const HOST = '0.0.0.0';
 const CACHE_PATH =  process.argv[2] || '/data';
 const FILE_PATH =  CACHE_PATH + '/.last';
 const LOG_PATH =  CACHE_PATH + '/.log';
