@@ -6,7 +6,8 @@ const express = require('express');
 
 const PORT = 8080;
 const HOST = '0.0.0.0';
-const FILE_PATH =  '/data/.last';
+const CACHE_PATH =  process.argv[2] || '/data';
+const FILE_PATH =  CACHE_PATH + '/.last';
 
 const app = express();
 app.get('/', (req, res) => {
