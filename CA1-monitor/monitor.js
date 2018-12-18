@@ -6,7 +6,7 @@ const FILE_PATH = CACHE_PATH + '/.last';
 const LOG_PATH = CACHE_PATH + '/.log';
 function touchSync(path) {
     if (fs.existsSync(path)) return;
-    fs.closeSync(fs.openSync(path, 'w'));
+    fs.openSync(path, 'w');
 }
 var check = 0;
 fs.appendFile(LOG_PATH, 'empty', function (err) {
