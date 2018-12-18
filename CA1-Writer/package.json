@@ -1,0 +1,23 @@
+{
+  "name": "ca1-writer",
+  "version": "1.0.0",
+  "description": "data writer",
+  "main": "writer.js",
+  "scripts": {
+    "start": "node writer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giraffeJ/cloudcomputing.git"
+  },
+  "author": "jeff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giraffeJ/cloudcomputing/issues"
+  },
+  "homepage": "https://github.com/giraffeJ/cloudcomputing#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "0.0.1-security"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ca1-monitor",
+  "version": "1.0.0",
+  "description": "monitor for assignment#1",
+  "main": "monitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giraffeJ/cloudcomputing.git"
+  },
+  "author": "jeff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giraffeJ/cloudcomputing/issues"
+  },
+  "homepage": "https://github.com/giraffeJ/cloudcomputing#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "proper-lockfile": "^3.2.0",
+    "util": "^0.11.1"
+  }
+}
