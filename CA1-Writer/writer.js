@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
         if(e.code!='EEXIST') throw e;
     }
     touchSync(FILE_PATH);
-    system("")
     fs.writeFile(FILE_PATH, msg, 'utf8', function(error, data){
         if(error) {throw error};
         console.log('Write Complete\n');
