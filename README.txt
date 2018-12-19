@@ -8,6 +8,8 @@ Instructions for how to run
 
 - string을 전달하는 방식은 기존 방식과 동일합니다. IP address가 같을 지는 모르겠지만, "curl http://172.17.0.2:8080/:string"으로 입력하면 됩니다.
 
+- ip는 환경에 따라 달라질 수 있으니 구동되지 않으면 별도로 확인하여 입력 부탁드립니다.
+
 - .last파일과 .log파일의 위치는 동일합니다. data폴더 안에 있습니다.
 
 이상입니다.
