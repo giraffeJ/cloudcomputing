@@ -6,8 +6,10 @@ const express = require('express');
 
 const PORT = 8080;
 const HOST = '0.0.0.0';
-const CACHE_PATH =  process.argv[2] || '/data';
-const FILE_PATH =  CACHE_PATH + '/.last';
+const CACHE_PATH =  '/data';
+console.log(CACHE_PATH);
+const FILE_PATH = CACHE_PATH + '/.last';
+console.log(FILE_PATH);
 
 const app = express();
 function touchSync(path){

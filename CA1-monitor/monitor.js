@@ -1,9 +1,13 @@
 const fs = require('fs');
 const watch = require('node-watch');
+const path = require('path');
 
-const CACHE_PATH = process.argv[2] || '/data';
+const CACHE_PATH = '/data';
+console.log(CACHE_PATH);
 const FILE_PATH = CACHE_PATH + '/.last';
+console.log(FILE_PATH);
 const LOG_PATH = CACHE_PATH + '/.log';
+console.log(LOG_PATH);
 function touchSync(path) {
     if (fs.existsSync(path)) return;
     fs.openSync(path, 'w');
@@ -16,20 +20,25 @@ fs.appendFile(LOG_PATH, 'empty', function (err) {
     } catch (e) {
         if (e.code != 'EEXIST') throw e;
     }
+    console.log('222');
     touchSync(FILE_PATH);
     touchSync(LOG_PATH);
-    watch(FILE_PATH, { recursive: true }, function (evt, name) {
-            fs.readFile(FILE_PATH, 'utf8', function (error, data) {
-                if (error) { throw error };
-                data = data + '\n';
-                fs.readFile(LOG_PATH, 'utf8', function(err, data2){
-                    if(err) throw err;
-                    data2 = data2 + '\n' + data;
-                    fs.writeFile(LOG_PATH, data2, 'utf8', function(err, data){
-                        if(err) throw err;
-                        console.log('Successfully updated');
-                    })
-                });
+    console.log('333');
+    fs.watch(FILE_PATH, { recursive: true }, function (evt, name) {
+        console.log('444');
+        fs.readFile(FILE_PATH, 'utf8', function (error, data) {
+            console.log('555');
+            if (error) { throw error };
+            fs.readFile(LOG_PATH, 'utf8', function (err, data2) {
+                console.log('666');
+                if (err) throw err;
+                data2 = data2 + '\n' + data;
+                fs.writeFile(LOG_PATH, data2, 'utf8', function (err, data) {
+                    console.log('777');
+                    if (err) throw err;
+                    console.log('Successfully updated');
+                })
             });
+        });
     });
 });
